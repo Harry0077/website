@@ -1,0 +1,40 @@
+{% extends "core/base.html" %}
+{% block title %}About{% endblock %}
+{% block content %}
+<section class="wrap page-head">
+  <h1>Built by students, for students and small businesses.</h1>
+  <p class="lead">{{ BRAND.name }} started because good project help was either too expensive or too shallow. We build things that work and teach you how.</p>
+</section>
+
+<section class="wrap split">
+  <div class="glass panel">
+    <h2>What we do</h2>
+    <p>We design and build IoT systems and websites. Every project is built from scratch, tested, documented and explained.</p>
+    <p>For colleges we deliver mini and major projects. For businesses we deliver sites that bring in enquiries.</p>
+  </div>
+  <div class="glass panel">
+    <h2>How we work</h2>
+    <ol class="steps">
+      <li><b>Talk.</b> You tell us the idea and the deadline.</li>
+      <li><b>Plan.</b> We send scope, parts list and price.</li>
+      <li><b>Build.</b> You see progress as we go.</li>
+      <li><b>Hand over.</b> Code, report, demo and a walkthrough.</li>
+    </ol>
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="section-head"><h2>Tools we use</h2></div>
+  <ul class="chips big-chips glass stack">
+    <li>ESP32</li><li>ESP8266</li><li>Arduino</li><li>Raspberry Pi</li><li>MQTT</li><li>Python</li><li>Django</li><li>JavaScript</li><li>HTML and CSS</li><li>PostgreSQL</li><li>Grafana</li><li>Blynk</li>
+  </ul>
+</section>
+
+<section class="wrap">
+  <div class="glass cta">
+    <h2>Let's build yours</h2>
+    <p>Reach us by form, email or WhatsApp.</p>
+    <a class="btn" href="{% url 'contact' %}">Contact us</a>
+  </div>
+</section>
+{% endblock %}

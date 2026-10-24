@@ -1,0 +1,62 @@
+{% extends "core/base.html" %}
+{% block title %}{{ BRAND.name }}{% endblock %}
+{% block content %}
+<section class="wrap hero">
+  <div class="hero-text">
+    <h1>We build the IoT project and the website your college submission needs.</h1>
+    <p class="lead">Working hardware, clean code and a live dashboard, explained so well you can present it yourself.</p>
+    <div class="actions">
+      <a class="btn" href="{% url 'contact' %}">Start your project</a>
+      <a class="btn btn-ghost" href="{% url 'iot' %}">See IoT projects</a>
+    </div>
+  </div>
+
+  <div class="hero-live" aria-label="Sample live sensor dashboard">
+    <div class="glass live live-main">
+      <span class="live-title">Greenhouse node</span>
+      <div class="big"><span id="temp">27.4</span><small>&deg;C</small></div>
+      <svg class="spark" viewBox="0 0 200 50" preserveAspectRatio="none" aria-hidden="true"><polyline id="spark" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" points=""/></svg>
+    </div>
+    <div class="glass live live-a"><span class="live-title">Soil moisture</span><div class="meter"><i id="moist" style="width:62%"></i></div><b id="moistv">62%</b></div>
+    <div class="glass live live-b"><span class="live-title">Pump</span><div class="switch" id="pump"><i></i></div><b id="pumpv">Off</b></div>
+  </div>
+</section>
+
+<section class="wrap split">
+  <a class="glass path" href="{% url 'iot' %}" data-tilt>
+    <h2>IoT projects</h2>
+    <p>ESP32, Arduino and Raspberry Pi builds with sensors, cloud dashboards and a full report.</p>
+    <span class="textlink">Browse {{ iot_count }} project{{ iot_count|pluralize }}</span>
+  </a>
+  <a class="glass path" href="{% url 'web' %}" data-tilt>
+    <h2>Website builds</h2>
+    <p>Django and front-end sites that load fast, look sharp on phones and are easy to update.</p>
+    <span class="textlink">Browse {{ web_count }} build{{ web_count|pluralize }}</span>
+  </a>
+</section>
+
+<section class="wrap">
+  <div class="section-head"><h2>What you get with every project</h2></div>
+  <div class="grid-4">
+    <div class="glass tile"><h3>Working demo</h3><p>Tested hardware or a live site, not a screenshot.</p></div>
+    <div class="glass tile"><h3>Source code</h3><p>Commented, organised and yours to keep.</p></div>
+    <div class="glass tile"><h3>Report and slides</h3><p>Documentation ready for your department format.</p></div>
+    <div class="glass tile"><h3>Viva support</h3><p>We walk you through how it works before you present.</p></div>
+  </div>
+</section>
+
+{% if featured %}
+<section class="wrap">
+  <div class="section-head"><h2>Recent work</h2><a class="textlink" href="{% url 'iot' %}">All projects</a></div>
+  <div class="grid-3">{% for p in featured %}{% include "core/_card.html" %}{% endfor %}</div>
+</section>
+{% endif %}
+
+<section class="wrap">
+  <div class="glass cta">
+    <h2>Got a deadline and an idea?</h2>
+    <p>Tell us what you need. We reply within one working day with a plan and a price.</p>
+    <a class="btn" href="{% url 'contact' %}">Send a message</a>
+  </div>
+</section>
+{% endblock %}

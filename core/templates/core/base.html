@@ -1,0 +1,69 @@
+{% load static %}<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}{{ BRAND.name }}{% endblock %} | IoT and website projects</title>
+  <meta name="description" content="{{ BRAND.tagline }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'core/css/style.css' %}">
+</head>
+<body>
+  <!-- Liquid glass refraction filter (used by .glass-nav on Chromium browsers) -->
+  <svg width="0" height="0" aria-hidden="true" style="position:absolute">
+    <filter id="liquid" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.012 0.02" numOctaves="2" seed="7" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="18" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+  </svg>
+
+  <div class="bg" aria-hidden="true"><i class="blob b1"></i><i class="blob b2"></i><i class="blob b3"></i><i class="blob b4"></i></div>
+
+  <header class="nav-wrap">
+    <nav class="glass glass-nav" aria-label="Main">
+      <a class="logo" href="{% url 'home' %}"><span class="logo-dot"></span>{{ BRAND.name }}</a>
+      <button class="burger" aria-label="Menu" aria-expanded="false" aria-controls="links"><span></span><span></span></button>
+      <ul id="links">
+        <li><a href="{% url 'home' %}" {% if request.resolver_match.url_name == 'home' %}aria-current="page"{% endif %}>Home</a></li>
+        <li><a href="{% url 'iot' %}" {% if request.resolver_match.url_name == 'iot' %}aria-current="page"{% endif %}>IoT projects</a></li>
+        <li><a href="{% url 'web' %}" {% if request.resolver_match.url_name == 'web' %}aria-current="page"{% endif %}>Website builds</a></li>
+        <li><a href="{% url 'about' %}" {% if request.resolver_match.url_name == 'about' %}aria-current="page"{% endif %}>About</a></li>
+        <li><a class="btn btn-sm" href="{% url 'contact' %}">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  {% if messages %}
+  <div class="toasts" role="status">
+    {% for m in messages %}<div class="glass toast {{ m.tags }}">{{ m }}</div>{% endfor %}
+  </div>
+  {% endif %}
+
+  <main>{% block content %}{% endblock %}</main>
+
+  <footer class="wrap">
+    <div class="glass foot">
+      <div>
+        <strong class="logo"><span class="logo-dot"></span>{{ BRAND.name }}</strong>
+        <p>{{ BRAND.tagline }}</p>
+      </div>
+      <div>
+        <p><a href="mailto:{{ BRAND.email }}">{{ BRAND.email }}</a></p>
+        <p>{{ BRAND.phone }}</p>
+        <p>{{ BRAND.location }}</p>
+      </div>
+      <div class="foot-links">
+        <a href="https://wa.me/{{ BRAND.whatsapp }}" target="_blank" rel="noopener">WhatsApp</a>
+        <a href="{{ BRAND.instagram }}" target="_blank" rel="noopener">Instagram</a>
+        
+        <a href="{{ BRAND.linkedin }}" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+    <p class="copy">&copy; {% now "Y" %} {{ BRAND.name }}. Built with Django.</p>
+  </footer>
+
+  <script src="{% static 'core/js/main.js' %}" defer></script>
+</body>
+</html>

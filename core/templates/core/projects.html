@@ -1,0 +1,22 @@
+{% extends "core/base.html" %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+<section class="wrap page-head">
+  <h1>{{ title }}</h1>
+  <p class="lead">{{ intro }}</p>
+</section>
+<section class="wrap">
+  {% if projects %}
+  <div class="grid-3">{% for p in projects %}{% include "core/_card.html" %}{% endfor %}</div>
+  {% else %}
+  <div class="glass empty"><h3>No projects added yet</h3><p>Add one in the admin panel under Projects.</p></div>
+  {% endif %}
+</section>
+<section class="wrap">
+  <div class="glass cta">
+    <h2>{% if kind == 'iot' %}Need a custom IoT project?{% else %}Need a website built?{% endif %}</h2>
+    <p>Share your idea, your deadline and your budget.</p>
+    <a class="btn" href="{% url 'contact' %}?topic={{ kind }}">Get a quote</a>
+  </div>
+</section>
+{% endblock %}

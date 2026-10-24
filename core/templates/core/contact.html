@@ -1,0 +1,31 @@
+{% extends "core/base.html" %}
+{% block title %}Contact{% endblock %}
+{% block content %}
+<section class="wrap page-head">
+  <h1>Tell us what you want to build</h1>
+  <p class="lead">We reply within one working day.</p>
+</section>
+
+<section class="wrap contact">
+  <form method="post" class="glass form" novalidate>
+    {% csrf_token %}
+    {{ form.website }}
+    {% for f in form.visible_fields %}
+    <div class="field {% if f.errors %}has-err{% endif %}">
+      <label for="{{ f.id_for_label }}">{{ f.label }}</label>
+      {{ f }}
+      {% for e in f.errors %}<small class="err">{{ e }}</small>{% endfor %}
+    </div>
+    {% endfor %}
+    <button class="btn" type="submit">Send message</button>
+  </form>
+
+  <aside class="glass info">
+    <h2>Other ways to reach us</h2>
+    <p><b>Email</b><br><a href="mailto:{{ BRAND.email }}">{{ BRAND.email }}</a></p>
+    <p><b>Phone</b><br>{{ BRAND.phone }}</p>
+    <p><b>Location</b><br>{{ BRAND.location }}</p>
+    <a class="btn btn-ghost" href="https://wa.me/{{ BRAND.whatsapp }}" target="_blank" rel="noopener">Chat on WhatsApp</a>
+  </aside>
+</section>
+{% endblock %}

@@ -1,0 +1,16 @@
+<article class="glass card" data-tilt>
+  <div class="card-media {{ p.category }}">
+    {% if p.image %}<img src="{{ p.image.url }}" alt="{{ p.title }}" loading="lazy">{% else %}
+    <span class="ph">{% if p.category == 'iot' %}
+      <svg viewBox="0 0 48 48" width="52" height="52" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="14" y="14" width="20" height="20" rx="4"/><path d="M20 8v6M28 8v6M20 34v6M28 34v6M8 20h6M8 28h6M34 20h6M34 28h6"/><circle cx="24" cy="24" r="3"/></svg>
+    {% else %}
+      <svg viewBox="0 0 48 48" width="52" height="52" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="9" width="36" height="30" rx="5"/><path d="M6 18h36M13 13.5h.01M18 13.5h.01M16 27l-4 4 4 4M32 27l4 4-4 4M26 26l-4 10"/></svg>
+    {% endif %}</span>{% endif %}
+  </div>
+  <div class="card-body">
+    <h3>{{ p.title }}</h3>
+    <p>{{ p.summary }}</p>
+    <ul class="chips">{% for t in p.tech_list %}<li>{{ t }}</li>{% endfor %}</ul>
+    {% if p.link %}<a class="textlink" href="{{ p.link }}" target="_blank" rel="noopener">View project</a>{% endif %}
+  </div>
+</article>
